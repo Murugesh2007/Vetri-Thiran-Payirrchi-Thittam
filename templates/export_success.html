@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ComicCraft — Export Successful</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #eef1f5;
+      padding: 24px;
+    }
+    .card {
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 40px 36px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    }
+    h1 {
+      color: #16a34a;
+      font-size: 1.4rem;
+      margin: 0 0 10px;
+    }
+    p {
+      color: #4b5563;
+      font-size: 0.95rem;
+      margin: 0 0 18px;
+    }
+    .btn-row {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+    a.btn {
+      display: inline-block;
+      text-decoration: none;
+      font-weight: 700;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+    }
+    a.primary {
+      background: #2563eb;
+      color: #fff;
+    }
+    a.primary:hover { background: #1d4ed8; }
+    a.secondary {
+      background: transparent;
+      color: #2563eb;
+      border: 1px solid #2563eb;
+    }
+    a.secondary:hover { background: #eff6ff; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>✅ Comic Exported Successfully!</h1>
+    <p>
+      Your AI-powered comic has been successfully created! Dive back in and
+      bring another story to life.
+    </p>
+    <div class="btn-row">
+      {% if pdf_path %}
+      <a class="btn primary" href="{{ pdf_path }}" download>
+        ⬇️ Download PDF
+      </a>
+      {% endif %}
+      <a class="btn secondary" href="/">🎨 Go Create Another Comic</a>
+    </div>
+  </div>
+</body>
+</html>

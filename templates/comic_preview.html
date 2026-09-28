@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ComicCraft - Your Comic Preview</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #eef1f5;
+            padding: 32px 16px 64px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: #ffffff;
+            padding: 18px 20px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #111827;
+            border-radius: 10px 10px 0 0;
+            border: 1px solid #ddd;
+        }
+
+        .panels-wrap {
+            background: #f3f4f6;
+            padding: 10px 20px 20px;
+            border: 1px solid #ddd;
+            border-top: none;
+        }
+
+        .panel {
+            background: white;
+            border-radius: 10px;
+            padding: 16px;
+            margin-top: 16px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .panel h2 {
+            margin: 0 0 12px;
+            font-size: 18px;
+            color: #111827;
+        }
+
+        .panel img {
+            width: 100%;
+            height: auto;
+            max-height: 600px;
+            object-fit: contain;
+            display: block;
+            border-radius: 8px;
+            background: #eeeeee;
+        }
+
+        .story-text {
+            margin-top: 12px;
+            color: #070707;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+
+        .download-wrap {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 14px 28px;
+            border-radius: 8px;
+        }
+
+        .download-btn:hover {
+            background: #21cc12;
+        }
+
+        .error-message {
+            padding: 20px;
+            text-align: center;
+            color: #b91c1c;
+            background: #fee2e2;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        📖 Your Comic Preview
+    </div>
+
+    <div class="panels-wrap">
+
+        {% for panel in layout %}
+
+        <div class="panel">
+
+            <h2>
+                Panel {{ panel.panel }}:
+                {{ panel.title }}
+            </h2>
+
+            {% if panel.image_url %}
+
+            <img
+                src="{{ panel.image_url }}"
+                alt="Panel {{ panel.panel }} illustration"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+            >
+
+            <div
+                class="error-message"
+                style="display:none;"
+            >
+                Image could not be loaded.
+                <br>
+                Image URL: {{ panel.image_url }}
+            </div>
+
+            {% else %}
+
+            <div class="error-message">
+                No image URL was provided for this panel.
+            </div>
+
+            {% endif %}
+
+            {% if panel.text %}
+
+            <div class="story-text">
+                {{ panel.text }}
+            </div>
+
+            {% endif %}
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<div class="download-wrap">
+
+    <a
+        class="download-btn"
+        href="/export-success?pdf_path={{ pdf_path }}"
+    >
+        ⬇️ Download Your Comic as PDF
+    </a>
+
+</div>
+
+</body>
+</html>

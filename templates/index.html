@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ComicCraft — Create Your Comic</title>
+  <style>
+    :root {
+      --accent: #2563eb;
+      --accent-dark: #1d4ed8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        linear-gradient(rgba(10, 20, 40, 0.35), rgba(10, 20, 40, 0.45)),
+        url("https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1600&q=60")
+        center/cover no-repeat fixed;
+      padding: 24px;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      padding: 32px 36px;
+      width: 100%;
+      max-width: 480px;
+    }
+    h1 {
+      margin: 0 0 4px;
+      font-size: 1.5rem;
+      color: #111827;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    p.subtitle {
+      margin: 0 0 22px;
+      color: #4b5563;
+      font-size: 0.92rem;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: #374151;
+      margin-bottom: 6px;
+      margin-top: 16px;
+    }
+    textarea, input[type="text"], select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      background: #f9fafb;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    textarea:focus, input[type="text"]:focus, select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+      background: #fff;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 70px;
+    }
+    button {
+      width: 100%;
+      margin-top: 26px;
+      padding: 12px;
+      background: var(--accent);
+      color: white;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.05s;
+    }
+    button:hover { background: var(--accent-dark); }
+    button:active { transform: scale(0.99); }
+    .hint {
+      margin-top: 14px;
+      font-size: 0.78rem;
+      color: #6b7280;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>✏️ Create Your Comic</h1>
+    <p class="subtitle">
+      Describe your idea and ComicCraft's AI will turn it into a full,
+      illustrated comic strip you can preview and download as a PDF.
+    </p>
+
+    <form action="/generate" method="post">
+      <label for="prompt">Story Prompt</label>
+      <textarea
+        id="prompt"
+        name="prompt"
+        placeholder="A brave fox explores an enchanted forest."
+        required
+      ></textarea>
+
+      <label for="character_name">Main Character Name</label>
+      <input
+        type="text"
+        id="character_name"
+        name="character_name"
+        placeholder="Finn"
+        required
+      />
+
+      <label for="setting">Setting</label>
+      <select id="setting" name="setting" required>
+        <option value="forest">Forest</option>
+        <option value="school">School</option>
+        <option value="space">Space</option>
+        <option value="city">City</option>
+      </select>
+
+      <label for="tone">Story Tone</label>
+      <select id="tone" name="tone" required>
+        <option value="light-hearted">Light-hearted</option>
+        <option value="dramatic">Dramatic</option>
+        <option value="poetic">Poetic</option>
+        <option value="funny">Funny</option>
+      </select>
+
+      <label for="style">Art Style</label>
+      <select id="style" name="style" required>
+        <option value="anime">Anime</option>
+        <option value="pixel art">Pixel Art</option>
+        <option value="comic book">Comic Book</option>
+        <option value="realistic">Realistic</option>
+      </select>
+
+      <button type="submit">Generate Comic</button>
+    </form>
+
+    <div class="hint">
+      Generation can take a little while as the AI writes the story and
+      illustrates each panel.
+    </div>
+  </div>
+</body>
+</html>
